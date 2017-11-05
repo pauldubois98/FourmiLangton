@@ -43,25 +43,30 @@ class Fourmie(object):
         self.grille[0].change(self.x, self.y)
         #bouge en x & y
         if self.orient==0:
-            self.x+=1
-            if self.x>=self.grille[0].larg:
+            if self.x>=self.grille[0].larg-1:
                 #print('out')
                 return 'error'
+            else:
+                self.x+=1
         elif self.orient==1:
-            self.y+=1
-            if self.y>=self.grille[0].haut:
+            if self.y>=self.grille[0].haut-1:
                 #print('out')
                 return 'error'
+            else:
+                self.y+=1
         elif self.orient==2:
-            self.x-=1
-            if self.x<0:
+            if self.x<1:
                 #print('out')
                 return 'error'
+            else:
+                self.x-=1
         elif self.orient==3:
-            self.y-=1
-            if self.y<0:
+            if self.y<1:
                 #print('out')
                 return 'error'
+            else:
+                self.y-=1
+        
         #bouge graphiquement
         self.grille[0].can.coords(self.graphObj, \
                                self.largeurCase*(self.x+0.5), \

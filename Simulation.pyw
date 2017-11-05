@@ -41,6 +41,10 @@ class Simulation(Frame):
         b=Button(top, text='Tout balnc', \
                command=self.grille.RAZ, bg='white', fg='light grey')
         b.grid(row=1, column=2)
+        #Toutes les fourmies ON:
+        b=Button(top, text='Toutes ON/OFF', \
+               command=self.allONOFF, bg='light blue')
+        b.grid(row=1, column=4)
         
         ###controlers
         #cadre
@@ -75,11 +79,17 @@ class Simulation(Frame):
             self.controlers[len(self.controlers)-1].destroy()
             del self.controlers[len(self.controlers)-1]
 
+    def allONOFF(self, event=None):
+        for c in self.controlers:
+            c.btOnOff.invoke()
+
+
+
 
 #test
 if __name__=='__main__':
     fen=Tk()
-    S=Simulation(fen, 10, 600, fourmieSet=1)
+    S=Simulation(fen, 60, 600, fourmieSet=1)
     
     fen.mainloop()
 

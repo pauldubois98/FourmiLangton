@@ -45,6 +45,12 @@ class Grille(object):
                     fill='black' if self.grille[i][j] else 'white', \
                     width=0)
 
+##        #deplacement
+##        self.deplOK=[]
+##        self.can.bind('<Button-1>', self.mouseDown)
+##        self.can.bind('<Button1-Motion>', self.mouseMove)
+##        self.can.bind('<Button1-ButtonRelease>', self.mouseUp)
+
     def __str__(self):
         """debug display"""
         return 'Grille Object:\n'+str(self.grille)
@@ -74,6 +80,7 @@ class Grille(object):
             for i in range(self.larg):
                 self.grille[i][j]=0
                 self.can.itemconfigure(i*self.larg+j+1, fill='white')
+
     
 
 #test
