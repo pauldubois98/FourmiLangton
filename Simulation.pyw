@@ -30,8 +30,8 @@ class Simulation(Frame):
         self.grille=Grille(self.can, haut, larg)
 
         ##Menu
-        m=menuSimulation(self, self.new, self.createFourmie, self.deleteFourmie,\
-                         self.allONOFF, self.grille.RAZ)
+        m=menuSimulation(self, self.newBig, self.newSmall, self.createFourmie, \
+                         self.deleteFourmie, self.allONOFF, self.grille.RAZ)
         
 ##        ###Boutons de controles (top)
 ##        #ajout
@@ -72,6 +72,8 @@ class Simulation(Frame):
             c=Controler(self.contr, f)
             self.controlers.append(c)
             c.grid(column=len(self.fourmies), row=1)
+        else:
+            self.bell()
 
     def deleteFourmie(self, event=None):
         if self.fourmies!=[]:
@@ -79,24 +81,34 @@ class Simulation(Frame):
             del self.fourmies[len(self.fourmies)-1]
             self.controlers[len(self.controlers)-1].destroy()
             del self.controlers[len(self.controlers)-1]
+        else:
+            self.bell()
 
     def allONOFF(self, event=None):
         for c in self.controlers:
             c.btOnOff.invoke()
 
-    def new(self, event=None):
+    def newBig(self, event=None):
+        self.master.destroy()
         app=Tk()
-        sim=Simulation(app, 10, 600, fourmieSet=0)
+        S=Simulation(app, 10, 600, fourmieSet=0)
+        S.pack()
+        app.mainloop()
 
-
+    def newSmall(self, event=None):
+        self.master.destroy()
+        app=Tk()
+        S=Simulation(app, 60, 600, fourmieSet=1)
+        S.pack()
+        app.mainloop()
 
 
 #test
 if __name__=='__main__':
     app=Tk()
     
-    simul=Simulation(app, 60, 600, fourmieSet=1)
-    simul.pack()
+    S=Simulation(app, 60, 600, fourmieSet=1)
+    S.pack()
     
     app.mainloop()
 

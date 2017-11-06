@@ -1,2 +1,1 @@
-# FourmieLangton
-A python app to study the so called "fourmie de langton"
+# FourmieLangtonUne applic	ation python qui simule la "fourmie de langton"Quelques captures d'écran:![Capture d'écran](/img/captureGif1.gif "capture d'écan - les différents menus")![Capture d'écran](/img/capture1.png "capture d'écan - l'évolution d'une fourmie")

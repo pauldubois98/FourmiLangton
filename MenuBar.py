@@ -3,7 +3,8 @@ import webbrowser
 
 #classe barre de menu type pour un jeu
 class menuSimulation(Menu):
-    def __init__(self, boss=None, commandRestart=None, \
+    def __init__(self, boss=None, \
+                 commandRestartBig=None, commandRestartSmall=None, \
                  commandAjouterFourmie=None, commandSupprimerFourmie=None,\
                  commandActiverFourmies=None, commandToutBlanc=None):
         ###MENUS
@@ -11,17 +12,19 @@ class menuSimulation(Menu):
         
         ##Menu de la simulation
         self.menuSimul=Menu(self.barreMenu, tearoff=0)
-        #bouton pour recommencer le jeu
-        self.menuSimul.add_command(label="Restart", \
+        #bouton pour recommencer une simulation (grandes cases)
+        self.menuSimul.add_command(label="Simulation - grandes cases", \
                                  activebackground='green', \
-                                 command=commandRestart)
-        #bouton pour fermer le menu
-        self.menuSimul.add_command(label="Fermer", \
-                                 activebackground='orange')
+                                 command=commandRestartBig)
+        #bouton pour recommencer une simulation (petites cases)
+        self.menuSimul.add_command(label="Simulation - petites cases", \
+                                 activebackground='blue', \
+                                 command=commandRestartSmall)
         #séparateur
         self.menuSimul.add_separator()
         #bouton pour quitter le jeu
-        self.menuSimul.add_command(label="Quitter          Ctrl+Q", \
+        self.menuSimul.add_command(label="Quitter", \
+                                 accelerator='Ctrl-Q', \
                                  activebackground='red', \
                                  command=boss.master.destroy)
         #cascade
@@ -31,17 +34,20 @@ class menuSimulation(Menu):
         self.menuControle=Menu(self.barreMenu, tearoff=0)
         #bouton pour commencer
         self.menuControle.add_command(label="Ajouter une fourmie", \
+                                 accelerator='Ctrl-N', \
                                  activebackground='light green',\
                                  activeforeground='black',\
                                  command=commandAjouterFourmie)
         #bouton pour les options
         self.menuControle.add_command(label="Supprimer une fourmie", \
+                                 accelerator='Ctrl-D', \
                                  activebackground='#FFB970',\
                                  activeforeground='black',\
                                  command=commandSupprimerFourmie)
 
         #bouton pour tout activer
         self.menuControle.add_command(label="Activer/Desactiver Toutes", \
+                                 accelerator='Ctrl-A', \
                                  activebackground='light blue',\
                                  activeforeground='black',\
                                  command=commandActiverFourmies)
@@ -49,6 +55,7 @@ class menuSimulation(Menu):
         self.menuControle.add_separator()
         #bouton pour remettre le damier tout blanc
         self.menuControle.add_command(label="Damier Blanc", \
+                                 accelerator='Ctrl-E', \
                                  activeforeground='light grey',\
                                  activebackground='white',\
                                  command=commandToutBlanc)
@@ -77,7 +84,13 @@ class menuSimulation(Menu):
         
         
         ###RACCOURCITS
-        boss.bind("<Control-q>", boss.master.destroy)
+        boss.master.bind("<Control-q>", lambda a: boss.master.destroy())
+        boss.master.bind("<Control-n>", lambda a: commandAjouterFourmie())
+        boss.master.bind("<Control-d>", lambda a: commandSupprimerFourmie())
+        boss.master.bind("<Control-a>", lambda a: commandActiverFourmies())
+        boss.master.bind("<Control-e>", lambda a: commandToutBlanc())
+        
+        boss.bind("<a>", lambda: print("a"))
         
 
 if __name__=='__main__':
