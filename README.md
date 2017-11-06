@@ -1,1 +1,1 @@
-# FourmieLangtonUne applic	ation python qui simule la "fourmie de langton"Quelques captures d'écran:![Capture d'écran](/img/captureGif1.gif "capture d'écan - les différents menus")![Capture d'écran](/img/capture1.png "capture d'écan - l'évolution d'une fourmie")
+# FourmieLangtonUne applic	ation python qui simule la "fourmie de langton"Quelques captures d'écran:<img src="/img/captureGif1.gif" alt="Menu Capture" style="width: 650px; height: 875"/><img src="/img/capture1.png.gif" alt="Capture Fourmie" style="width: 650px; height: 875"/>
