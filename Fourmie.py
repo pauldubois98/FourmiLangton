@@ -26,7 +26,7 @@ class Fourmie(object):
         else:
             noms=['fourmieDroiteBis','fourmieBasBis',\
                   'fourmieGaucheBis','fourmieHautBis']
-        self.img=[PhotoImage(file=noms[i]+'.png').subsample(zoom) for i in range(4)]
+        self.img=[PhotoImage(file='img/'+noms[i]+'.png').subsample(zoom) for i in range(4)]
         #initialisation de l'objet graphique
         self.graphObj=grille.can.create_image(self.largeurCase*(self.x+0.5), \
                                               self.hauteurCase*(self.y+0.5), \

@@ -1,6 +1,7 @@
 from Grille import *
 from Fourmie import *
 from Controler import *
+from MenuBar import *
 
 class Simulation(Frame):
     def __init__(self, root=None, haut=10, height=500, larg=-1, width=-1, \
@@ -27,38 +28,38 @@ class Simulation(Frame):
         self.can.pack(padx=2, pady=1)
         #grille
         self.grille=Grille(self.can, haut, larg)
+
+        ##Menu
+        m=menuSimulation(self, self.new, self.createFourmie, self.deleteFourmie,\
+                         self.allONOFF, self.grille.RAZ)
         
-        ###boutons de controles (top)
-        #ajout
-        b=Button(top, text='Ajouter une fourmie', \
-               command=self.createFourmie, bg='light grey', fg='green')
-        b.grid(row=1, column=1)
-        #suppression
-        b=Button(top, text='Supprimer une fourmie', \
-               command=self.deleteFourmie, bg='dark grey', fg='red')
-        b.grid(row=1, column=3)
-        #RAZ
-        b=Button(top, text='Tout balnc', \
-               command=self.grille.RAZ, bg='white', fg='light grey')
-        b.grid(row=1, column=2)
-        #Toutes les fourmies ON:
-        b=Button(top, text='Toutes ON/OFF', \
-               command=self.allONOFF, bg='light blue')
-        b.grid(row=1, column=4)
+##        ###Boutons de controles (top)
+##        #ajout
+##        b=Button(top, text='Ajouter une fourmie', \
+##               command=self.createFourmie, bg='light grey', fg='green')
+##        b.grid(row=1, column=1)
+##        #suppression
+##        b=Button(top, text='Supprimer une fourmie', \
+##               command=self.deleteFourmie, bg='dark grey', fg='red')
+##        b.grid(row=1, column=3)
+##        #RAZ
+##        b=Button(top, text='Tout balnc', \
+##               command=self.grille.RAZ, bg='white', fg='light grey')
+##        b.grid(row=1, column=2)
+##        #Toutes les fourmies ON:
+##        b=Button(top, text='Toutes ON/OFF', \
+##               command=self.allONOFF, bg='light blue')
+##        b.grid(row=1, column=4)
         
         ###controlers
         #cadre
         self.contr=Frame(self)
-        self.contr.pack()
+        self.contr.pack(padx=5, pady=5)
         #fourmie(s?) & controller(s)
         self.fourmies=[]
         self.controlers=[]
         self.createFourmie()
         self.createFourmie()
-
-        
-        #self-pack
-        self.pack()
 
 
     def createFourmie(self, event=None):
@@ -83,13 +84,19 @@ class Simulation(Frame):
         for c in self.controlers:
             c.btOnOff.invoke()
 
+    def new(self, event=None):
+        app=Tk()
+        sim=Simulation(app, 10, 600, fourmieSet=0)
+
 
 
 
 #test
 if __name__=='__main__':
-    fen=Tk()
-    S=Simulation(fen, 60, 600, fourmieSet=1)
+    app=Tk()
     
-    fen.mainloop()
+    simul=Simulation(app, 60, 600, fourmieSet=1)
+    simul.pack()
+    
+    app.mainloop()
 
