@@ -2,8 +2,8 @@ from tkinter import *
 from PIL import Image
 
 
-class Fourmie(object):
-    def __init__(self, grille, init_x=0, init_y=0, init_orient=3, fourmieSet=1):
+class Fourmi(object):
+    def __init__(self, grille, init_x=0, init_y=0, init_orient=3, fourmiSet=1):
         """init"""
         #variables
         self.grille=grille,
@@ -20,17 +20,17 @@ class Fourmie(object):
         zoom=int(120-1.6*grille.largeurCase)
 
         #images
-        if fourmieSet==0:
-            noms=['fourmieDroite','fourmieBas',\
-                  'fourmieGauche','fourmieHaut']
+        if fourmiSet==0:
+            noms=['fourmiDroite','fourmiBas',\
+                  'fourmiGauche','fourmiHaut']
         else:
-            noms=['fourmieDroiteBis','fourmieBasBis',\
-                  'fourmieGaucheBis','fourmieHautBis']
+            noms=['fourmiDroiteBis','fourmiBasBis',\
+                  'fourmiGaucheBis','fourmiHautBis']
         self.img=[PhotoImage(file='img/'+noms[i]+'.png').subsample(zoom) for i in range(4)]
         #initialisation de l'objet graphique
         self.graphObj=grille.can.create_image(self.largeurCase*(self.x+0.5), \
                                               self.hauteurCase*(self.y+0.5), \
-                                              image=self.img[0])
+                                              image=self.img[init_orient])
     
     def move(self):
         """moves of 1 step"""

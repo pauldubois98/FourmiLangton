@@ -5,8 +5,8 @@ import webbrowser
 class menuSimulation(Menu):
     def __init__(self, boss=None, \
                  commandRestartBig=None, commandRestartSmall=None, \
-                 commandAjouterFourmie=None, commandSupprimerFourmie=None,\
-                 commandActiverFourmies=None, commandToutBlanc=None):
+                 commandAjouter=None, commandSupprimer=None,\
+                 commandActivers=None, commandToutBlanc=None):
         ###MENUS
         self.barreMenu=Menu(boss)
         
@@ -33,24 +33,24 @@ class menuSimulation(Menu):
         ##Menu de Controle
         self.menuControle=Menu(self.barreMenu, tearoff=0)
         #bouton pour commencer
-        self.menuControle.add_command(label="Ajouter une fourmie", \
+        self.menuControle.add_command(label="Ajouter une fourmi", \
                                  accelerator='Ctrl-N', \
                                  activebackground='light green',\
                                  activeforeground='black',\
-                                 command=commandAjouterFourmie)
+                                 command=commandAjouter)
         #bouton pour les options
-        self.menuControle.add_command(label="Supprimer une fourmie", \
+        self.menuControle.add_command(label="Supprimer une fourmi", \
                                  accelerator='Ctrl-D', \
                                  activebackground='#FFB970',\
                                  activeforeground='black',\
-                                 command=commandSupprimerFourmie)
+                                 command=commandSupprimer)
 
         #bouton pour tout activer
         self.menuControle.add_command(label="Activer/Desactiver Toutes", \
                                  accelerator='Ctrl-A', \
                                  activebackground='light blue',\
                                  activeforeground='black',\
-                                 command=commandActiverFourmies)
+                                 command=commandActivers)
         #séparateur
         self.menuControle.add_separator()
         #bouton pour remettre le damier tout blanc
@@ -65,7 +65,7 @@ class menuSimulation(Menu):
         #Menu d'aide
         self.menuAide=Menu(self.barreMenu, tearoff=0)
         #bouton pour afficher les règles du jeu
-        self.menuAide.add_command(label="Fourmie de Langton",
+        self.menuAide.add_command(label="Fourmi de Langton",
                                   activebackground='dark grey', \
                                   activeforeground='black', \
                                   command=lambda: webbrowser.open\
@@ -74,7 +74,7 @@ class menuSimulation(Menu):
         self.menuAide.add_command(label="About me", \
                                   activebackground='black', \
                                   command=lambda: webbrowser.open\
-                                  ("https://pauldubois98.github.io/prgm"))
+                                  ("https://pauldubois98.github.io"))
         #cascade
         self.barreMenu.add_cascade(label="Aide", menu=self.menuAide)
 
@@ -85,9 +85,9 @@ class menuSimulation(Menu):
         
         ###RACCOURCITS
         boss.master.bind("<Control-q>", lambda a: boss.master.destroy())
-        boss.master.bind("<Control-n>", lambda a: commandAjouterFourmie())
-        boss.master.bind("<Control-d>", lambda a: commandSupprimerFourmie())
-        boss.master.bind("<Control-a>", lambda a: commandActiverFourmies())
+        boss.master.bind("<Control-n>", lambda a: commandAjouter())
+        boss.master.bind("<Control-d>", lambda a: commandSupprimer())
+        boss.master.bind("<Control-a>", lambda a: commandActivers())
         boss.master.bind("<Control-e>", lambda a: commandToutBlanc())
         
         boss.bind("<a>", lambda: print("a"))

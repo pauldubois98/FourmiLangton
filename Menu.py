@@ -7,13 +7,13 @@ class MenuBar(Menu):
 
         #Menu Simulation
         self.menuSimul=Menu(self.menuBar, tearoff=0)
-        #bouton pour ajouter une fourmie
-        self.menuSimul.add_command(label="Ajouter une fourmie", \
+        #bouton pour ajouter une fourmi
+        self.menuSimul.add_command(label="Ajouter une fourmi", \
                                    activebackground='green',\
                                    activeforeground='black', \
                                    command=None)
-        #bouton pour supprimer une fourmie
-        self.menuSimul.add_command(label="Supprimer une fourmie", \
+        #bouton pour supprimer une fourmi
+        self.menuSimul.add_command(label="Supprimer une fourmi", \
                                    activebackground='red',\
                                    activeforeground='black', \
                                    command=None)
